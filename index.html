@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanwal Ali · graphic design · teal + cbff54</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- RESET & VARIABLES — deep teal bg, #cbff54 accent (locked) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Inter', 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #063231;
+      color: #ffffff;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    :root {
+      --primary-teal: #063231;
+      --teal-light: #1f8a85;
+      --accent-bright: #cbff54;
+      --accent-soft: #d9ff85;
+      --white-pure: #ffffff;
+      --shadow-soft: 0 15px 30px -12px rgba(0, 0, 0, 0.4);
+    }
+    section { padding: 40px 0px; }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* glass card (unchanged) */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 40px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(203, 255, 84, 0.2);
+      color: white;
+    }
+    /* ---------- STICKY NAV ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(6, 50, 49, 0.9);
+      border-bottom: 1px solid rgba(203, 255, 84, 0.3);
+      padding: 1rem 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: #ffffff; font-weight: 500; font-size: 1.1rem;
+      transition: 0.2s; position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-bright); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 100%;
+      height: 2px; background: linear-gradient(90deg, #ffffff, var(--accent-bright));
+      border-radius: 2px;
+    }
+    .hamburger { display: none; font-size: 2rem; cursor: pointer; color: white; }
+    @media (max-width: 800px) {
+      .nav-links {
+        position: fixed; top: 70px; left: 0; width: 100%;
+        background: rgba(6, 50, 49, 0.98); backdrop-filter: blur(20px);
+        flex-direction: column; align-items: center; padding: 2rem 0; gap: 2rem;
+        transform: translateY(-150%); transition: transform 0.4s ease;
+        border-bottom: 1px solid rgba(203, 255, 84, 0.3); z-index: 998;
+      }
+      .nav-links.show { transform: translateY(0); }
+      .hamburger { display: block; }
+    }
+
+    /* ---------- HERO SECTION — LAYOUT EXACTLY AS REQUESTED (unchanged) ---------- */
+    .hero-grid {
+      display: flex;
+      justify-content: center;
+     align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      width: 50%;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      background: linear-gradient(to right, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.8rem;
+      font-weight: 400;
+      display: flex;
+      gap: 8px;
+      margin: 20px 0 20px;
+      color: white;
+    }
+    #typing {
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+    .cursor {
+      width: 4px;
+      background: var(--accent-bright);
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 2px solid var(--accent-bright);
+      background: transparent;
+      color: white;
+    }
+    .btn-primary {
+      background: var(--accent-bright);
+      color: #063231;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent-bright);
+    }
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px -10px rgba(203, 255, 84, 0.3);
+    }
+    .hero-image {
+      position: relative;
+      border-radius: 30px;
+      min-height: 500px;
+      width: 40%;
+      background: url('Sanwal-chandio-Graphic-Designer.png') center/cover;
+      background-repeat: no-repeat;
+      border: 2px solid rgba(203, 255, 84, 0.3);
+      box-shadow: var(--shadow-soft);
+    }
+    .floating-shape {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-bright), #8fc932);
+      filter: blur(55px);
+      opacity: 0.2;
+      z-index: -1;
+      top: -30px;
+      right: -40px;
+      animation: float 6s infinite alternate;
+    }
+    @keyframes float { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(-30px,30px) scale(1.1);} }
+    @media (max-width: 900px) {
+      .hero-content, .hero-image { width: 100%; }
+      .hero-grid {
+      gap: 50px;
+    }
+    }
+
+    /* ---------- PROBLEMS (more text) ---------- */
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .problem-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 40px 35px;
+      border: 1px solid rgba(203, 255, 84, 0.2);
+      transition: 0.2s;
+    }
+    .problem-card i {
+      font-size: 3rem;
+      color: var(--accent-bright);
+      margin-bottom: 20px;
+    }
+    .problem-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: white;
+    }
+    .problem-card p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) { .problems-grid { grid-template-columns: 1fr; }.problem-card h3 {
+    font-size: 20px;
+} }
+
+    /* ---------- SERVICES — 5 cards with detailed text ---------- */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 40px 20px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.1);
+      transition: 0.25s;
+    }
+    .service-card i {
+      font-size: 3.2rem;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 18px;
+    }
+    .service-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .service-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: rgba(203, 255, 84, 0.1);
+      border-color: var(--accent-bright);
+    }
+    @media (max-width: 900px) {
+      .service-grid { grid-template-columns: repeat(2,1fr); }
+      .service-card:last-child { grid-column: auto; }
+    }
+    @media (max-width: 550px) { .service-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- PROCESS — each step has title + descriptive text ---------- */
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .step {
+      flex: 1 1 220px;
+      background: rgba(255,255,255,0.03);
+      padding: 40px 25px;
+      border-radius: 50px;
+      border: 1px solid rgba(203,255,84,0.15);
+      text-align: center;
+    }
+    .step .step-number {
+      width: 80px; height: 80px; background: var(--accent-bright); color: #063231;
+      font-size: 2.6rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 25px; border: 4px solid white; box-shadow: 0 0 25px var(--accent-bright);
+    }
+    .step h3 {
+      font-size: 1.7rem; margin-bottom: 15px; color: white;
+    }
+    .step p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* ---------- WHY CHOOSE ME — two columns with richer text ---------- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .why-item {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(5px);
+      padding: 40px 35px;
+      border-radius: 50px;
+      border: 1px solid rgba(203,255,84,0.3);
+      display: flex;
+      gap: 25px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .why-item i {
+      font-size: 3rem;
+      color: var(--accent-bright);
+      min-width: 70px;
+    }
+    .why-text h3 {
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .why-text p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 800px) { .why-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- GALLERY (refined) ---------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      grid-auto-rows: 270px;
+    }
+    .gallery-item {
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(203, 255, 84, 0.3);
+      background-size: cover;
+      background-position: center;
+      transition: 0.3s;
+      box-shadow: var(--shadow-soft);
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(6,50,49,0.95));
+      display: flex; align-items: flex-end; padding: 25px; opacity: 0; transition: 0.3s;
+      color: white; font-weight: 600; font-size: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:hover { transform: scale(0.98); border-color: var(--accent-bright); }
+
+    /* ---------- TESTIMONIALS (more text) ---------- */
+    .slider-container {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 60px 40px;
+      border: 1px solid rgba(203,255,84,0.2);
+    }
+    .testimonial-slide { display: none; text-align: center; font-size: 1.4rem; max-width:800px; margin:0 auto; color:white; line-height:1.6; }
+    .testimonial-slide.active-slide { display: block; }
+    .client-name { margin-top:35px; font-weight:600; color: var(--accent-bright); font-size:1.2rem; }
+    .slider-dots { display:flex; justify-content:center; gap:15px; margin-top:40px; }
+    .dot { width:14px; height:14px; background:rgba(255,255,255,0.2); border-radius:50%; cursor:pointer; transition:0.2s; border:1px solid rgba(203,255,84,0.3); }
+    .dot.active-dot { background: var(--accent-bright); width:30px; border-radius:20px; }
+
+    /* ---------- CTA (expanded text) ---------- */
+    .cta-card {
+      background: linear-gradient(145deg, rgba(6,50,49,0.95), rgba(6,50,49,0.98)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&auto=format') center/cover;
+      padding: 40px 40px;
+      border-radius: 40px;
+      border: 2px solid var(--accent-bright);
+      text-align: center;
+    }
+    .cta-card h2 { font-size: 3rem; margin-bottom: 1.2rem; }
+    .cta-card p { color: white; font-size: 1.3rem; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* ---------- FAQ — auto close accordion ---------- */
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      margin: 18px 0;
+      padding: 22px 35px;
+      border-radius: 80px;
+      border: 1px solid rgba(203,255,84,0.2);
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .faq-question {
+      font-weight: 600; font-size: 1.4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      color: #dddddd; padding-left: 5px; font-size: 1.1rem; line-height: 1.6;
+    }
+    .faq-item.active .faq-answer { max-height: 250px; margin-top: 22px; }
+
+    /* ---------- CONTACT FORM (same) ---------- */
+    .contact-form {
+      max-width: 720px; margin: 0 auto; background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+      border-radius: 20px; padding: 20px; border: 1px solid rgba(203,255,84,0.3);
+    }
+    .input-group { margin-bottom: 28px; }
+    input, textarea {
+      width: 100%; padding: 18px 24px; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+      border: 1px solid rgba(203,255,84,0.3); border-radius: 60px; font-size: 1rem; color: white;
+    }
+    textarea { border-radius: 30px; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-bright); background: rgba(203,255,84,0.1); }
+    .error-message { color: #ff829b; font-size: 0.9rem; display: none; margin-top: 5px; }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 40px 20px !important; display: flex; gap:20px; flex-wrap:wrap;
+      justify-content:space-between; align-items:center; border-top:1px solid rgba(203,255,84,0.3);
+    }
+    .socials i {
+      font-size:1.8rem; margin:0 10px;
+      background:linear-gradient(145deg,#ffffff,var(--accent-bright)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      transition:0.2s;
+    }
+    .socials i:hover { transform:scale(1.2); }
+    .back-to-top {
+      background:transparent; border-radius:60px; padding:12px 22px; border:1px solid var(--accent-bright);
+      color:white; font-weight:600; cursor:pointer;
+    }
+    .back-to-top:hover { background:var(--accent-bright); color:#063231; }
+
+    /* reveal */
+    .reveal { opacity:0; transform:translateY(35px); transition:0.7s; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Sanwal Ali</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#problems" class="nav-link">Problems</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#process" class="nav-link">Process</a></li>
+      <li><a href="#why-me" class="nav-link">Why me</a></li>
+      <li><a href="#gallery" class="nav-link">Gallery</a></li>
+      <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+      <li><a href="#cta" class="nav-link">CTA</a></li>
+      <li><a href="#" class="nav-link">Download My CV</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- HERO (layout unchanged) -->
+  <section id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Graphic Designer</h1>
+        <div class="hero-sub">
+          <span>I'm</span>
+          <span id="typing"></span>
+          <span class="cursor">|</span>
+        </div>
+        <p style="color:white; max-width:500px;">Sanwal Ali — 8+ years shaping brands through identity, print, and digital. Let's make your vision unmistakable.</p>
+        <div class="btn-group">
+          <a href="#cta" class="btn btn-primary">Work with me</a>
+          <a href="#gallery" class="btn">See work</a>
+        </div>
+      </div>
+      <div class="hero-image"><div class="floating-shape"></div></div>
+    </div>
+  </section>
+
+  <!-- PROBLEMS (more descriptive) -->
+  <section id="problems">
+    <div class="container reveal">
+      <h2>Design challenges I resolve</h2>
+      <div class="problems-grid">
+        <div class="problem-card"><i class="fas fa-puzzle-piece"></i><h3>Weak brand perception</h3><p>Your brand blends into the background? I craft cohesive visual identities that build trust and recognition. From color psychology to messaging, I ensure your audience remembers you.</p></div>
+        <div class="problem-card"><i class="fas fa-book"></i><h3>Book covers that don't sell</h3><p>A cover is your first handshake with readers. I design compelling, genre‑perfect covers that stop the scroll and convert browsers into buyers, with a focus on typography and emotion.</p></div>
+        <div class="problem-card"><i class="fas fa-mobile-alt"></i><h3>Frustrating UI/UX</h3><p>Clunky interfaces kill conversions. I simplify user flows, reduce cognitive load, and design intuitive interfaces that keep users engaged and coming back.</p></div>
+        <div class="problem-card"><i class="fas fa-paint-brush"></i><h3>Generic illustrations</h3><p>Stock visuals make you forgettable. I create bespoke illustrations — vector, 3D, or hand‑drawn — that amplify your unique story and connect emotionally with your audience.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (Branding, Logo, Book Cover, UI/UX, Illustrations) with detailed text -->
+  <section id="services">
+    <div class="container reveal">
+      <h2>Professional services</h2>
+      <div class="service-grid">
+  <div class="service-card">
+    <i class="fas fa-brush"></i>
+    <h3>Branding</h3>
+    <p>Comprehensive identity: strategy, logo suite, color palette, typography, tone of voice, and brand guidelines that scale.</p>
+  </div>
+
+  <div class="service-card">
+    <i class="fas fa-tag"></i>
+    <h3>Logo</h3>
+    <p>Distinctive, timeless logos that capture your brand essence. I deliver multiple concepts, vector files, and usage guides.</p>
+  </div>
+
+  <div class="service-card">
+    <i class="fas fa-book"></i>
+    <h3>Book Cover</h3>
+    <p>Thoughtful covers for fiction, non-fiction, poetry. I work closely with authors to visualise the soul of your book.</p>
+  </div>
+
+  <div class="service-card">
+    <i class="fas fa-mobile-alt"></i>
+    <h3>UI/UX</h3>
+    <p>Wireframes, high-fidelity prototypes, user flows, and micro-interactions for web and mobile apps that delight users.</p>
+  </div>
+
+  <div class="service-card">
+    <i class="fas fa-paint-brush"></i>
+    <h3>Illustrations</h3>
+    <p>Custom vector, 3D, or hand-drawn illustrations for brands, editorial, marketing, and storytelling.</p>
+  </div>
+
+  <!-- New Service Added -->
+  <div class="service-card">
+    <i class="fas fa-bullhorn"></i>
+    <h3>Social Media Design</h3>
+    <p>Scroll-stopping posts, ad creatives, carousel designs, and branded templates crafted to grow your online presence.</p>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <!-- PROCESS with step-by-step details -->
+  <section id="process">
+    <div class="container reveal">
+      <h2>My process</h2>
+      <div class="process-steps">
+        <div class="step"><div class="step-number">1</div><h3>Discover</h3><p>We dive deep into your brand, audience, and goals. I conduct stakeholder interviews, market research, and define the creative brief together.</p></div>
+        <div class="step"><div class="step-number">2</div><h3>Concept</h3><p>I sketch multiple directions and present 2–3 distinct concepts. We refine the strongest direction based on your feedback and strategy.</p></div>
+        <div class="step"><div class="step-number">3</div><h3>Iterate</h3><p>Detailed design development, colour exploration, typography, and revisions. You're involved at every milestone to ensure alignment.</p></div>
+        <div class="step"><div class="step-number">4</div><h3>Deliver</h3><p>Final files in all required formats (print, digital, source), plus a style guide and handoff support. Your project is ready to launch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE ME (richer text) -->
+  <section id="why-me">
+    <div class="container reveal">
+      <h2>Why choose me</h2>
+      <div class="why-grid">
+        <div class="why-item"><i class="fas fa-trophy"></i><div class="why-text"><h3>8+ years experience</h3><p>Trusted by 50+ brands worldwide, from startups to major publishers. I've delivered 200+ successful projects with a focus on strategy and aesthetics.</p></div></div>
+        <div class="why-item"><i class="fas fa-palette"></i><div class="why-text"><h3>Distinctive style</h3><p>My signature teal + cbff54 accent gives your brand a modern, bold look that stands out in any market, without sacrificing timelessness.</p></div></div>
+        <div class="why-item"><i class="fas fa-clock"></i><div class="why-text"><h3>Always on time</h3><p>Reliable delivery, clear communication, and no missed deadlines. I respect your timeline and keep you updated throughout.</p></div></div>
+        <div class="why-item"><i class="fas fa-star"></i><div class="why-text"><h3>Award‑winning work</h3><p>Recipient of the 2023 AIGA Design Award and featured in multiple design publications for branding and cover design excellence.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container reveal">
+      <h2>Selected work</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&auto=format');"><div class="gallery-overlay">Branding · Fintech</div></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format');"><div class="gallery-overlay">Logo · Minimal</div></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format');"><div class="gallery-overlay">Book cover · Fiction</div></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1563089145-599f8f12f2c5?w=600&auto=format');"><div class="gallery-overlay">UI/UX · dashboard</div></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format');"><div class="gallery-overlay">Illustration · editorial</div></div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1557821552-17105176677c?w=600&auto=format');"><div class="gallery-overlay">packaging design</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container reveal">
+      <h2>Kind words</h2>
+      <div class="slider-container">
+        <div class="testimonial-slide active-slide">“Sanwal transformed our visual identity with a bold, fresh direction. The teal and cbff54 palette became our signature. He listened deeply and delivered beyond expectations.” <div class="client-name">— Mira Chen, Founder of Lumen</div></div>
+        <div class="testimonial-slide">“The book cover he designed exceeded expectations – it won an award and boosted pre‑orders by 40%. He captured the essence of the story perfectly.” <div class="client-name">— David K., Editor</div></div>
+        <div class="testimonial-slide">“His UI/UX work on our app increased user retention by 25%. Professional, creative and fast. He made complex flows feel effortless.” <div class="client-name">— Samira L., Product Manager</div></div>
+        <div class="slider-dots"><span class="dot active-dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container reveal">
+      <div class="cta-card">
+        <h2>Let's build something iconic</h2>
+        <p>Whether it's a complete brand identity, a book cover that sells, or a seamless UI/UX overhaul – I'm ready to bring your vision to life.</p>
+        <a href="#contact" class="btn btn-primary" style="display:inline-block;">Start your project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (auto‑close accordion) -->
+  <section id="faq">
+    <div class="container reveal">
+      <h2>Frequently asked</h2>
+      <div class="faq-item">
+        <div class="faq-question">What is your typical timeline? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Most projects take 2‑4 weeks from brief to final files, depending on complexity. Branding projects average 3 weeks, while book covers can be delivered in 10 days. I'll provide a clear schedule upfront.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Do you offer revisions? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">Yes, I include up to three revision rounds to ensure you're 100% satisfied. Additional revisions can be arranged at a nominal fee. My goal is to get it right, not just done.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What formats will I receive? <i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer">You'll get print‑ready files (PDF, AI, EPS) and digital formats (PNG, SVG, Figma). I also provide a style guide and organise all assets in a shared folder for easy access.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container reveal">
+      <h2 style="text-align:center;">Let's talk</h2>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="input-group"><input type="text" id="name" placeholder="Your name"><span class="error-message" id="nameError">Name required</span></div>
+          <div class="input-group"><input type="email" id="email" placeholder="Email address"><span class="error-message" id="emailError">Valid email needed</span></div>
+          <div class="input-group"><textarea id="message" rows="4" placeholder="Tell me about your project, goals, and timeline"></textarea><span class="error-message" id="msgError">Message too short (min 10 characters)</span></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
+          <p style="text-align:center; margin-top:20px; color: var(--accent-bright);" id="formSuccess"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <div>© 2025 Sanwal Ali — graphic design</div>
+    <div class="socials">
+      <i class="fab fa-behance"></i><i class="fab fa-dribbble"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i>
+    </div>
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i> Download My CV</button>
+  </footer>
+
+  <script>
+    (function() {
+      // Typing (more words)
+      const words = ['Sanwal Ali', 'a brand strategist', 'a cover artist', 'a UI/UX specialist', 'an illustrator'];
+      let i = 0, j = 0, isDeleting = false;
+      const typingSpan = document.getElementById('typing');
+      function typeEffect() {
+        const current = words[i];
+        if (!isDeleting) {
+          typingSpan.textContent = current.substring(0, j+1);
+          j++;
+          if (j === current.length) { isDeleting = true; setTimeout(typeEffect, 1600); return; }
+        } else {
+          typingSpan.textContent = current.substring(0, j-1);
+          j--;
+          if (j === 0) { isDeleting = false; i = (i+1) % words.length; }
+        }
+        setTimeout(typeEffect, isDeleting ? 70 : 120);
+      }
+      typeEffect();
+
+      // Hamburger
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
+
+      // Active nav
+      const sections = document.querySelectorAll('section');
+      const navItems = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 100;
+          if (scrollY >= top) current = sec.getAttribute('id');
+        });
+        navItems.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#'+current) link.classList.add('active');
+        });
+      });
+
+      // Reveal
+      const reveals = document.querySelectorAll('.reveal');
+      function revealCheck() {
+        reveals.forEach(r => {
+          const winTop = window.scrollY + window.innerHeight - 100;
+          if (r.offsetTop < winTop) r.classList.add('active');
+        });
+      }
+      window.addEventListener('scroll', revealCheck); window.addEventListener('load', revealCheck);
+
+      // Testimonial dots
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          slides.forEach(s => s.classList.remove('active-slide'));
+          dots.forEach(d => d.classList.remove('active-dot'));
+          slides[idx].classList.add('active-slide');
+          dot.classList.add('active-dot');
+        });
+      });
+
+      // Back to top
+
+      // FAQ auto‑close accordion
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          // if clicking on the same item that is already active, just close it? we want toggle with auto close others
+          const isActive = this.classList.contains('active');
+          // close all
+          faqItems.forEach(f => f.classList.remove('active'));
+          // if it wasn't active, open it (otherwise all remain closed)
+          if (!isActive) this.classList.add('active');
+        });
+      });
+
+      // Form validation
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let valid = true;
+        document.querySelectorAll('.error-message').forEach(e => e.style.display = 'none');
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const msg = document.getElementById('message');
+        if (!name.value.trim()) { document.getElementById('nameError').style.display = 'block'; valid = false; }
+        if (!email.value.match(/^\S+@\S+\.\S+$/)) { document.getElementById('emailError').style.display = 'block'; valid = false; }
+        if (msg.value.trim().length < 10) { document.getElementById('msgError').style.display = 'block'; valid = false; }
+        if (valid) { document.getElementById('formSuccess').innerText = '✔ Thanks, I’ll reply within 24h.'; form.reset(); }
+      });
+    })();
+  </script>
+</body>
+</html>
