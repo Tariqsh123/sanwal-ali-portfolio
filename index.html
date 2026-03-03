@@ -41,7 +41,7 @@
       letter-spacing: -0.02em;
     }
     h2 {
-      font-size: 2.5rem;
+      font-size: 2.9rem;
       margin-bottom: 2.5rem;
       background: linear-gradient(145deg, #ffffff, var(--accent-bright));
       -webkit-background-clip: text;
@@ -460,7 +460,7 @@
       <li><a href="#gallery" class="nav-link">Gallery</a></li>
       <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
       <li><a href="#cta" class="nav-link">CTA</a></li>
-      <li><a href="#" class="nav-link">Download My CV</a></li>
+      <li><a href="#" class="nav-link">Download My Resume</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
   </nav>
@@ -577,7 +577,7 @@
         <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&auto=format');"><div class="gallery-overlay">Branding · Fintech</div></div>
         <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format');"><div class="gallery-overlay">Logo · Minimal</div></div>
         <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format');"><div class="gallery-overlay">Book cover · Fiction</div></div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1563089145-599f8f12f2c5?w=600&auto=format');"><div class="gallery-overlay">UI/UX · dashboard</div></div>
+        <div class="gallery-item" style="background-image: url('https://img.freepik.com/premium-vector/gradient-ui-ux-design-illustration_23-2151514787.jpg?semt=ais_hybrid&w=740&q=80');"><div class="gallery-overlay">UI/UX · dashboard</div></div>
         <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&auto=format');"><div class="gallery-overlay">Illustration · editorial</div></div>
         <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1557821552-17105176677c?w=600&auto=format');"><div class="gallery-overlay">packaging design</div></div>
       </div>
@@ -635,7 +635,16 @@
         <form id="contactForm">
           <div class="input-group"><input type="text" id="name" placeholder="Your name"><span class="error-message" id="nameError">Name required</span></div>
           <div class="input-group"><input type="email" id="email" placeholder="Email address"><span class="error-message" id="emailError">Valid email needed</span></div>
-          <div class="input-group"><textarea id="message" rows="4" placeholder="Tell me about your project, goals, and timeline"></textarea><span class="error-message" id="msgError">Message too short (min 10 characters)</span></div>
+          <div class="input-group">
+  <textarea id="message" rows="4" placeholder="Tell me about your project, goals, and timeline"></textarea>
+  <span class="error-message" id="msgError">Message too short (min 10 characters)</span>
+</div>
+
+<style>
+  #message {
+    resize: none; /* removes bottom-right arrow */
+  }
+</style>
           <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
           <p style="text-align:center; margin-top:20px; color: var(--accent-bright);" id="formSuccess"></p>
         </form>
@@ -649,7 +658,7 @@
     <div class="socials">
       <i class="fab fa-behance"></i><i class="fab fa-dribbble"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin-in"></i>
     </div>
-    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i> Download My CV</button>
+    <button class="back-to-top" id="backToTop"> Download My Resume <i class="fas fa-arrow-down"></i></button>
   </footer>
 
   <script>
