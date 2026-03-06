@@ -13,7 +13,593 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+  <style>
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Inter', 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #063231;
+      color: #ffffff;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    :root {
+      --primary-teal: #063231;
+      --teal-light: #1f8a85;
+      --accent-bright: #cbff54;
+      --accent-soft: #d9ff85;
+      --white-pure: #ffffff;
+      --shadow-soft: 0 15px 30px -12px rgba(0, 0, 0, 0.4);
+    }
+    section { padding: 40px 0px; }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 40px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(203, 255, 84, 0.2);
+      color: white;
+    }
+    .navbar {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(16px) saturate(180%);
+      background: rgba(6, 50, 49, 0.9);
+      border-bottom: 1px solid rgba(203, 255, 84, 0.3);
+      padding: 1rem 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: #ffffff; font-weight: 500; font-size: 1.1rem;
+      transition: 0.2s; position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-bright); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; bottom: -6px; left: 0; width: 100%;
+      height: 2px; background: linear-gradient(90deg, #ffffff, var(--accent-bright));
+      border-radius: 2px;
+    }
+    .hamburger { display: none; font-size: 2rem; cursor: pointer; color: white; }
+    @media (max-width: 800px) {
+      *{
+        overflow-x: hidden !important;
+      }
+      .nav-links {
+        position: fixed; top: 70px; left: 0; width: 100%;
+        background: rgba(6, 50, 49, 0.98); backdrop-filter: blur(20px);
+        flex-direction: column; align-items: center; padding: 2rem 0; gap: 2rem;
+        transform: translateY(-150%); transition: transform 0.4s ease;
+        border-bottom: 1px solid rgba(203, 255, 84, 0.3); z-index: 998;
+      }
+      .nav-links.show { transform: translateY(0); }
+      .hamburger { display: none; }
+    }
+    .hero-grid {
+      display: flex;
+      justify-content: center;
+      padding: 60px 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-content { width: 50%; }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      background: linear-gradient(to right, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.8rem;
+      font-weight: 400;
+      display: flex;
+      gap: 8px;
+      margin: 20px 0 20px;
+      color: white;
+    }
+    #typing {
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+    }
+    .cursor {
+      width: 4px;
+      background: var(--accent-bright);
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 2px solid var(--accent-bright);
+      background: transparent;
+      color: white;
+    }
+    .btn-primary {
+      background: var(--accent-bright);
+      color: #063231;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent-bright);
+    }
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 25px -10px rgba(203, 255, 84, 0.3);
+    }
+    .hero-image {
+      position: relative;
+      border-radius: 30px;
+      min-height: 500px;
+      width: 40%;
+      background: url('Sanwal-chandio-Graphic-Designer.webp') center/cover;
+      background-repeat: no-repeat;
+      border: 2px solid rgba(203, 255, 84, 0.3);
+      box-shadow: var(--shadow-soft);
+    }
+    .floating-shape {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-bright), #8fc932);
+      filter: blur(55px);
+      opacity: 0.2;
+      z-index: -1;
+      top: -30px;
+      right: -40px;
+      animation: float 6s infinite alternate;
+    }
+    @keyframes float { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(-30px,30px) scale(1.1);} }
+    @media (max-width: 900px) {
+      .hero-content, .hero-image { width: 100%; }
+      .hero-grid { gap: 50px; }
+    }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .problem-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      padding: 40px 35px;
+      border: 1px solid rgba(203, 255, 84, 0.2);
+      transition: 0.2s;
+    }
+    .problem-card i {
+      font-size: 3rem;
+      color: var(--accent-bright);
+      margin-bottom: 20px;
+    }
+    .problem-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: white;
+    }
+    .problem-card p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 700px) { .problems-grid { grid-template-columns: 1fr; }.problem-card h3 { font-size: 20px; } }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 40px 20px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.1);
+      transition: 0.25s;
+    }
+    .service-card i {
+      font-size: 3.2rem;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 18px;
+    }
+    .service-card h3 {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .service-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      background: rgba(203, 255, 84, 0.1);
+      border-color: var(--accent-bright);
+    }
+    @media (max-width: 900px) {
+      .service-grid { grid-template-columns: repeat(2,1fr); }
+      .service-card:last-child { grid-column: auto; }
+    }
+    @media (max-width: 550px) { .service-grid { grid-template-columns: 1fr; } }
+    .process-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .step {
+      flex: 1 1 220px;
+      background: rgba(255,255,255,0.03);
+      padding: 40px 25px;
+      border-radius: 50px;
+      border: 1px solid rgba(203,255,84,0.15);
+      text-align: center;
+    }
+    .step .step-number {
+      width: 80px; height: 80px; background: var(--accent-bright); color: #063231;
+      font-size: 2.6rem; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 25px; border: 4px solid white; box-shadow: 0 0 25px var(--accent-bright);
+    }
+    .step h3 {
+      font-size: 1.7rem; margin-bottom: 15px; color: white;
+    }
+    .step p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+    .why-item {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(5px);
+      padding: 40px 35px;
+      border-radius: 50px;
+      border: 1px solid rgba(203,255,84,0.3);
+      display: flex;
+      gap: 25px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .why-item i {
+      font-size: 3rem;
+      color: var(--accent-bright);
+      min-width: 70px;
+    }
+    .why-text h3 {
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      color: white;
+    }
+    .why-text p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    @media (max-width: 800px) { .why-grid { grid-template-columns: 1fr; } }
+    /* ---------- GALLERY TABS STYLES ---------- */
+    .gallery-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 2px solid rgba(203,255,84,0.5);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .tab-btn.active-tab {
+      background: var(--accent-bright);
+      border-color: var(--accent-bright);
+      color: #063231;
+    }
+    .tab-btn:hover {
+      background: rgba(203,255,84,0.2);
+      border-color: var(--accent-bright);
+    }
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    .gallery-item {
+      border-radius: 20px;
+      width: auto;
+      height: 350px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid rgba(203, 255, 84, 0.3);
+      transition: 0.3s;
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(6,50,49,0.95));
+      display: flex; align-items: flex-end; padding: 25px; opacity: 0; transition: 0.3s;
+      color: white; font-weight: 600; font-size: 1.5rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:hover { border-color: var(--accent-bright); }
+
+    /* ---------- NEW LIGHTBOX (OVERLAY) STYLES ---------- */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 40px;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    .lightbox-content {
+      position: relative;
+      max-width: 100%;
+      max-height: 85vh;
+    }
+    .lightbox-image {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 20px;
+      border: 3px solid var(--accent-bright);
+      box-shadow: 0 0 40px rgba(203,255,84,0.3);
+      object-fit: contain;
+      background: #0a3f3d; /* fallback */
+    }
+    .lightbox-caption {
+      color: white;
+      font-size: 1.5rem;
+      margin-top: 20px;
+      font-weight: 500;
+      text-align: center;
+      background: linear-gradient(145deg, #ffffff, var(--accent-bright));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 50px;
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      background: transparent;
+      border: none;
+      padding: 10px;
+      z-index: 10001;
+    }
+    .lightbox-close:hover {
+      color: var(--accent-bright);
+      transform: scale(1.1);
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(6,50,49,0.7);
+      border: 2px solid var(--accent-bright);
+      color: white;
+      font-size: 2.5rem;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 60px;
+      transition: 0.2s;
+      backdrop-filter: blur(5px);
+      z-index: 10001;
+    }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+    .lightbox-prev:hover, .lightbox-next:hover {
+      background: var(--accent-bright);
+      color: #063231;
+    }
+    @media (max-width: 700px) {
+      .lightbox-prev { display: none; }
+      .lightbox-next {  display: none; }
+    }
+
+    /* other original sections unchanged */
+    .slider-container {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 60px 40px;
+      border: 1px solid rgba(203,255,84,0.2);
+    }
+    .testimonial-slide { display: none; text-align: center; font-size: 1.4rem; max-width:800px; margin:0 auto; color:white; line-height:1.6; }
+    .testimonial-slide.active-slide { display: block; }
+    .client-name { margin-top:35px; font-weight:600; color: var(--accent-bright); font-size:1.2rem; }
+    .slider-dots { display:flex; justify-content:center; gap:15px; margin-top:40px; }
+    .dot { width:14px; height:14px; background:rgba(255,255,255,0.2); border-radius:50%; cursor:pointer; transition:0.2s; border:1px solid rgba(203,255,84,0.3); }
+    .dot.active-dot { background: var(--accent-bright); width:30px; border-radius:20px; }
+    .cta-card {
+      background: linear-gradient(145deg, rgba(6,50,49,0.95), rgba(6,50,49,0.98)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&auto=format') center/cover;
+      padding: 40px 40px;
+      border-radius: 40px;
+      border: 2px solid var(--accent-bright);
+      text-align: center;
+    }
+    .cta-card h2 { font-size: 3rem; margin-bottom: 1.2rem; }
+    .cta-card p { color: white; font-size: 1.3rem; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .faq-item {
+      background: rgba(255,255,255,0.03);
+      margin: 18px 0;
+      padding: 22px 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(203,255,84,0.2);
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .faq-question {
+      font-weight: 600; font-size: 1.4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      color: #dddddd; padding-left: 5px; font-size: 1.1rem; line-height: 1.6;
+    }
+    .faq-item.active .faq-answer { max-height: 250px; margin-top: 22px; }
+    .contact-form {
+      max-width: 720px; margin: 0 auto; background: rgba(255,255,255,0.06); backdrop-filter: blur(12px);
+      border-radius: 20px; padding: 20px; border: 1px solid rgba(203,255,84,0.3);
+    }
+    .input-group { margin-bottom: 28px; }
+    input, textarea {
+      width: 100%; padding: 18px 24px; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+      border: 1px solid rgba(203,255,84,0.3); border-radius: 60px; font-size: 1rem; color: white;
+    }
+    textarea { border-radius: 30px; resize: none; }
+    input:focus, textarea:focus { outline: none; border-color: var(--accent-bright); background: rgba(203,255,84,0.1); }
+    .error-message { color: #ff829b; font-size: 0.9rem; display: none; margin-top: 5px; }
+    footer {
+      padding: 40px 20px !important; display: flex; gap:20px; flex-wrap:wrap;
+      justify-content:space-between; align-items:center; border-top:1px solid rgba(203,255,84,0.3);
+    }
+    .socials i {
+      font-size:1.8rem; margin:0 10px;
+      background:linear-gradient(145deg,#ffffff,var(--accent-bright)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      transition:0.2s;
+    }
+    .socials i:hover { transform:scale(1.2); }
+    .back-to-top {
+      background:transparent; border-radius:60px; padding:12px 22px; border:1px solid var(--accent-bright);
+      color:white; font-weight:600; cursor:pointer;
+    }
+    .back-to-top:hover { background:var(--accent-bright); color:#063231; }
+    .reveal { opacity:0; transform:translateY(35px); transition:0.7s; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+
+    .logo-section{
+    padding:60px 0;
+}
+    .logo-section h2{
+      color: white;
+      padding-left: 3%;
+    }
+.logo-slider{
+    overflow:hidden;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px 0;
+    position:relative;
+}
+
+.logo-track{
+    display:flex;
+    gap:60px;
+    width:max-content;
+    animation:scroll 20s linear infinite;
+}
+
+.logo-track img{
+    width:auto;
+    filter: grayscale(100%);
+    height: 60px;
+    transition:0.3s;
+}
+
+@keyframes scroll{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
+@media(max-width:600px){
+   .logo-section h2{
+      padding-left: 5%;
+    }
+    .logo-track img{
+    height: 50px;
+}
+
+}
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -46,13 +632,50 @@
 
   <section id="problems"><div class="container reveal"><h2>Design challenges I resolve</h2><div class="problems-grid"><div class="problem-card"><i class="fas fa-puzzle-piece"></i><h3>Weak brand perception</h3><p>Your brand blends into the background? I craft cohesive visual identities that build trust and recognition. From color psychology to messaging, I ensure your audience remembers you.</p></div><div class="problem-card"><i class="fas fa-book"></i><h3>Book covers that don't sell</h3><p>A cover is your first handshake with readers. I design compelling, genre‑perfect covers that stop the scroll and convert browsers into buyers, with a focus on typography and emotion.</p></div><div class="problem-card"><i class="fas fa-mobile-alt"></i><h3>Frustrating UI/UX</h3><p>Clunky interfaces kill conversions. I simplify user flows, reduce cognitive load, and design intuitive interfaces that keep users engaged and coming back.</p></div><div class="problem-card"><i class="fas fa-paint-brush"></i><h3>Generic illustrations</h3><p>Stock visuals make you forgettable. I create bespoke illustrations — vector, 3D, or hand‑drawn — that amplify your unique story and connect emotionally with your audience.</p></div></div></div></section>
 
+  <section class="logo-section">
+
+<h2>Trusted By</h2>
+
+<div class="logo-slider">
+    <div class="logo-track" id="logoTrack"></div>
+</div>
+
+</section>
+
+<script>
+
+const logos = [
+ "images/logo-1.webp",
+ "images/logo-2.webp",
+ "images/logo-3.webp",
+ "images/logo-4.webp",
+ "images/logo-5.webp",
+ "images/logo-6.webp",
+ "images/logo-7.webp"
+];
+
+const track = document.getElementById("logoTrack");
+
+logos.concat(logos).forEach(logo => {
+
+  const img = document.createElement("img");
+  img.src = logo;
+  img.alt = "logo";
+
+  track.appendChild(img);
+
+});
+
+</script>
   <section id="services"><div class="container reveal"><h2>Professional services</h2><div class="service-grid"><div class="service-card"><i class="fas fa-brush"></i><h3>Branding</h3><p>Comprehensive identity: strategy, logo suite, color palette, typography, tone of voice, and brand guidelines that scale.</p></div><div class="service-card"><i class="fas fa-tag"></i><h3>Logo</h3><p>Distinctive, timeless logos that capture your brand essence. I deliver multiple concepts, vector files, and usage guides.</p></div><div class="service-card"><i class="fas fa-book"></i><h3>Book Cover</h3><p>Thoughtful covers for fiction, non-fiction, poetry. I work closely with authors to visualise the soul of your book.</p></div><div class="service-card"><i class="fas fa-mobile-alt"></i><h3>UI/UX</h3><p>Wireframes, high-fidelity prototypes, user flows, and micro-interactions for web and mobile apps that delight users.</p></div><div class="service-card"><i class="fas fa-paint-brush"></i><h3>Illustrations</h3><p>Custom vector, 3D, or hand-drawn illustrations for brands, editorial, marketing, and storytelling.</p></div><div class="service-card"><i class="fas fa-bullhorn"></i><h3>Social Media Design</h3><p>Scroll-stopping posts, ad creatives, carousel designs, and branded templates crafted to grow your online presence.</p></div></div></div></section>
 
   <section id="process"><div class="container reveal"><h2>My process</h2><div class="process-steps"><div class="step"><div class="step-number">1</div><h3>Discover</h3><p>We dive deep into your brand, audience, and goals. I conduct stakeholder interviews, market research, and define the creative brief together.</p></div><div class="step"><div class="step-number">2</div><h3>Concept</h3><p>I sketch multiple directions and present 2–3 distinct concepts. We refine the strongest direction based on your feedback and strategy.</p></div><div class="step"><div class="step-number">3</div><h3>Iterate</h3><p>Detailed design development, colour exploration, typography, and revisions. You're involved at every milestone to ensure alignment.</p></div><div class="step"><div class="step-number">4</div><h3>Deliver</h3><p>Final files in all required formats (print, digital, source), plus a style guide and handoff support. Your project is ready to launch.</p></div></div></div></section>
 
   <section id="why-me"><div class="container reveal"><h2>Why choose me</h2><div class="why-grid"><div class="why-item"><i class="fas fa-trophy"></i><div class="why-text"><h3>8+ years experience</h3><p>Trusted by 50+ brands worldwide, from startups to major publishers. I've delivered 200+ successful projects with a focus on strategy and aesthetics.</p></div></div><div class="why-item"><i class="fas fa-palette"></i><div class="why-text"><h3>Distinctive style</h3><p>My signature teal + cbff54 accent gives your brand a modern, bold look that stands out in any market, without sacrificing timelessness.</p></div></div><div class="why-item"><i class="fas fa-clock"></i><div class="why-text"><h3>Always on time</h3><p>Reliable delivery, clear communication, and no missed deadlines. I respect your timeline and keep you updated throughout.</p></div></div><div class="why-item"><i class="fas fa-star"></i><div class="why-text"><h3>Award‑winning work</h3><p>Recipient of the 2023 AIGA Design Award and featured in multiple design publications for branding and cover design excellence.</p></div></div></div></div></section>
 
-  <!-- ############  GALLERY SECTION — TABS + LIGHTBOX  ############ -->
+  
+
+  <!-- ############  GALLERY SECTION — TABS + LIGHTBOX WITH IMG TAGS  ############ -->
   <section id="gallery">
     <div class="container reveal">
       <h2>Selected work</h2>
@@ -63,122 +686,451 @@
         <button class="tab-btn" data-tab="book-cover">Book Cover Design</button>
         <button class="tab-btn" data-tab="compaign-branding">Campaign Design</button>
       </div>
-      <!-- gallery grid (items with data-category) -->
+      <!-- gallery grid (items with data-category and img tags) -->
       <div class="gallery-grid" id="galleryGrid">
         <!-- Branding -->
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-1.webp');"><div class="gallery-overlay"> Cola One</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-2.webp');"><div class="gallery-overlay">Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-3.webp');"><div class="gallery-overlay"> Cola One</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-5.webp');"><div class="gallery-overlay"> Cola One</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-6.webp');"><div class="gallery-overlay">Pakola  </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-7.webp');"><div class="gallery-overlay">Pakola  </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-8.webp');"><div class="gallery-overlay"> Cola One</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-9.webp');"><div class="gallery-overlay"> Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-10.webp');"><div class="gallery-overlay">Pakola  </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-11.webp');"><div class="gallery-overlay">Cola One </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-12.webp');"><div class="gallery-overlay"> Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-13.webp');"><div class="gallery-overlay"> Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-14.webp');"><div class="gallery-overlay"> Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-15.webp');"><div class="gallery-overlay"> Pakola </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-16.webp');"><div class="gallery-overlay"> Future Menu</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-17.webp');"><div class="gallery-overlay"> Body Beat</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-18.webp');"><div class="gallery-overlay"> Body Beat</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-19.webp');"><div class="gallery-overlay"> Aroma</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-20.webp');"><div class="gallery-overlay"> SunSilk</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-21.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-22.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-23.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-24.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-25.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-26.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-27.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-28.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-29.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-30.webp');"><div class="gallery-overlay"> OK Gold</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-31.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-32.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-33.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-34.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-35.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-36.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-37.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-38.webp');"><div class="gallery-overlay"> Revlon</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-39.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-40.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-41.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-42.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-43.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-44.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-46.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-47.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-48.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-49.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-50.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-51.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-52.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-53.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-54.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-55.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-56.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-57.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-58.webp');"><div class="gallery-overlay">BioDerma </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-59.webp');"><div class="gallery-overlay"> Dark Grove</div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-60.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-61.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-62.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-63.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-64.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-65.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-66.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-67.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-68.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-69.webp');"><div class="gallery-overlay">Moments </div></div>
-        <div class="gallery-item" data-category="branding" style="background-image: url('images/branding-img-70.webp');"><div class="gallery-overlay">Moments </div></div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-1.webp" alt="Cola One branding">
+          <div class="gallery-overlay">Cola One</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-2.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-3.webp" alt="Cola One branding">
+          <div class="gallery-overlay">Cola One</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-5.webp" alt="Cola One branding">
+          <div class="gallery-overlay">Cola One</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-6.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-7.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-8.webp" alt="Cola One branding">
+          <div class="gallery-overlay">Cola One</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-9.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-10.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-11.webp" alt="Cola One branding">
+          <div class="gallery-overlay">Cola One</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-12.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-13.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-14.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-15.webp" alt="Pakola branding">
+          <div class="gallery-overlay">Pakola</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-16.webp" alt="Future Menu branding">
+          <div class="gallery-overlay">Future Menu</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-17.webp" alt="Body Beat branding">
+          <div class="gallery-overlay">Body Beat</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-18.webp" alt="Body Beat branding">
+          <div class="gallery-overlay">Body Beat</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-19.webp" alt="Aroma branding">
+          <div class="gallery-overlay">Aroma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-20.webp" alt="SunSilk branding">
+          <div class="gallery-overlay">SunSilk</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-21.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-22.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-23.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-24.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-25.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-26.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-27.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-28.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-29.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-30.webp" alt="OK Gold branding">
+          <div class="gallery-overlay">OK Gold</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-31.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-32.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-33.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-34.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-35.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-36.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-37.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-38.webp" alt="Revlon branding">
+          <div class="gallery-overlay">Revlon</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-39.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-40.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-41.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-42.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-43.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-44.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-46.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-47.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-48.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-49.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-50.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-51.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-52.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-53.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-54.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-55.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-56.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-57.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-58.webp" alt="BioDerma branding">
+          <div class="gallery-overlay">BioDerma</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-59.webp" alt="Dark Grove branding">
+          <div class="gallery-overlay">Dark Grove</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-60.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-61.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-62.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-63.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-64.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-65.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-66.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-67.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-68.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-69.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
+        <div class="gallery-item" data-category="branding">
+          <img src="images/branding-img-70.webp" alt="Moments branding">
+          <div class="gallery-overlay">Moments</div>
+        </div>
         <!-- Book Cover -->
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-1.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-2.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-3.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-4.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-5.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-6.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-7.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-8.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-9.webp');"><div class="gallery-overlay">Book Cover Design </div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-10.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-11.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-12.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-13.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-14.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-15.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-16.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-17.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-18.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-19.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-20.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-21.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
-        <div class="gallery-item" data-category="book-cover" style="background-image: url('images/book-cover-img-22.webp');"><div class="gallery-overlay"> Book Cover Design</div></div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-1.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-2.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-3.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-4.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-5.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-6.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-7.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-8.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-9.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-10.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-11.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-12.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-13.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-14.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-15.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-16.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-17.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-18.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-19.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-20.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-21.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
+        <div class="gallery-item" data-category="book-cover">
+          <img src="images/book-cover-img-22.webp" alt="Book Cover Design">
+          <div class="gallery-overlay">Book Cover Design</div>
+        </div>
         <!-- Compaign Branding -->
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-1.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-2.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-3.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-4.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-5.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-6.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-7.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-8.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-9.webp');"><div class="gallery-overlay">Nescafe </div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-10.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-11.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-12.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-13.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-14.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-15.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-16.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-17.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-18.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-19.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        <div class="gallery-item" data-category="compaign-branding" style="background-image: url('images/compaign-branding-20.webp');"><div class="gallery-overlay"> Nescafe</div></div>
-        
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-1.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-2.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-3.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-4.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-5.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-6.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-7.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-8.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-9.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-10.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-11.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-12.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-13.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-14.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-15.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-16.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-17.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-18.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-19.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
+        <div class="gallery-item" data-category="compaign-branding">
+          <img src="images/compaign-branding-20.webp" alt="Nescafe campaign">
+          <div class="gallery-overlay">Nescafe</div>
+        </div>
       </div>
     </div>
   </section>
@@ -304,10 +1256,8 @@
         if (index >= visibleItems.length) index = 0;
         currentIndex = index;
         const item = visibleItems[currentIndex];
-        const bgImage = window.getComputedStyle(item).backgroundImage;
-        // extract url from background-image: url("...")
-        const src = bgImage.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-        lightboxImg.src = src;
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
         // caption from overlay div text
         const captionDiv = item.querySelector('.gallery-overlay');
         lightboxCaption.innerText = captionDiv ? captionDiv.innerText : 'Sanwal Ali Design';
