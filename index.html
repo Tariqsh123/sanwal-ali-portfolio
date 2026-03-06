@@ -43,14 +43,27 @@
   <meta name="twitter:description" content="Professional graphic designer portfolio showcasing branding, logos, and creative visual designs.">
   <meta name="twitter:image" content="https://tariqsh123.github.io/sanwal-ali-portfolio/Sanwal-chandio-Graphic-Designer.png">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Preconnect Google Fonts -->
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+<!-- Google Fonts (non-blocking) -->
+
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+
+<!-- Font Awesome (non-blocking) -->
+
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</noscript>
+
+<!-- Main CSS (non-blocking) -->
+
+<link rel="preload" href="style.css" as="style">
+<link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
 
   <!-- Structured Data / Schema -->
   <script type="application/ld+json">
