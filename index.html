@@ -563,7 +563,7 @@
     }
 .logo-slider{
     overflow:hidden;
-    background-color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(to right,#0a3f3d,#063231,#063231,#0a3f3d);
     padding: 30px 0;
     position:relative;
 }
@@ -575,11 +575,11 @@
     animation:scroll 20s linear infinite;
 }
 
-.logo-track img{
-    width:auto;
-    filter: grayscale(100%);
+.logo-track img {
+    width: auto;
     height: 60px;
-    transition:0.3s;
+    transition: 0.3s;
+    filter: brightness(0) invert(1); /* logos ko white banayega */
 }
 
 @keyframes scroll{
@@ -651,7 +651,6 @@ const logos = [
  "images/logo-4.webp",
  "images/logo-5.webp",
  "images/logo-6.webp",
- "images/logo-7.webp"
 ];
 
 const track = document.getElementById("logoTrack");
@@ -745,11 +744,11 @@ logos.concat(logos).forEach(logo => {
           <img src="images/branding-img-15.webp" alt="Pakola branding">
           <div class="gallery-overlay">Pakola</div>
         </div>
-        <div class="gallery-item" data-category="branding">
+        <!-- <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-16.webp" alt="Future Menu branding">
           <div class="gallery-overlay">Future Menu</div>
-        </div>
-        <div class="gallery-item" data-category="branding">
+        </div> -->
+        <!-- <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-17.webp" alt="Body Beat branding">
           <div class="gallery-overlay">Body Beat</div>
         </div>
@@ -764,7 +763,7 @@ logos.concat(logos).forEach(logo => {
         <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-20.webp" alt="SunSilk branding">
           <div class="gallery-overlay">SunSilk</div>
-        </div>
+        </div> -->
         <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-21.webp" alt="OK Gold branding">
           <div class="gallery-overlay">OK Gold</div>
@@ -953,14 +952,14 @@ logos.concat(logos).forEach(logo => {
           <img src="images/branding-img-68.webp" alt="Moments branding">
           <div class="gallery-overlay">Moments</div>
         </div>
-        <div class="gallery-item" data-category="branding">
+        <!-- <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-69.webp" alt="Moments branding">
           <div class="gallery-overlay">Moments</div>
         </div>
         <div class="gallery-item" data-category="branding">
           <img src="images/branding-img-70.webp" alt="Moments branding">
           <div class="gallery-overlay">Moments</div>
-        </div>
+        </div> -->
         <!-- Book Cover -->
         <div class="gallery-item" data-category="book-cover">
           <img src="images/book-cover-img-1.webp" alt="Book Cover Design">
