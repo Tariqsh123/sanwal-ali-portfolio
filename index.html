@@ -1,33 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sanwal Ali | Graphic Designer Portfolio</title>
-  <!-- all original meta, fonts, css preserved (condensed for speed) -->
-  <meta name="title" content="Sanwal Ali | Professional Graphic Designer Portfolio">
-  <meta name="description" content="Official portfolio of Sanwal Ali, a professional graphic designer specializing in logo design, branding, social media creatives, and modern visual design.">
-  <link rel="canonical" href="https://tariqsh123.github.io/sanwal-ali-portfolio/">
-  <link rel="icon" type="image/png" href="Sanwal-chandio-Graphic-Designer.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sanwal Ali | Professional Graphic Designer Portfolio</title>
+
+<meta name="title" content="Sanwal Ali | Professional Graphic Designer Portfolio">
+<meta name="description" content="Official portfolio of Sanwal Ali, a professional graphic designer specializing in logo design, branding, social media creatives, and modern visual design.">
+<meta name="keywords" content="Sanwal Ali, Graphic Designer, Logo Designer, Branding Designer, Social Media Designer, Creative Designer Portfolio">
+<meta name="author" content="Sanwal Ali">
+<meta name="publisher" content="Sanwal Ali">
+
+<!-- Robots -->
+<meta name="robots" content="index, follow">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://tariqsh123.github.io/sanwal-ali-portfolio/">
+
+<!-- Open Graph (Facebook / LinkedIn SEO) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sanwal Ali | Professional Graphic Designer Portfolio">
+<meta property="og:description" content="Explore the portfolio of Sanwal Ali, showcasing logo design, branding, and creative graphic design work.">
+<meta property="og:url" content="https://tariqsh123.github.io/sanwal-ali-portfolio/">
+<meta property="og:image" content="https://tariqsh123.github.io/sanwal-ali-portfolio/Sanwal-chandio-Graphic-Designer.webp">
+
+<!-- Twitter SEO -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sanwal Ali | Graphic Designer Portfolio">
+<meta name="twitter:description" content="Professional graphic designer portfolio showcasing branding, logo design, and creative visuals.">
+<meta name="twitter:image" content="https://tariqsh123.github.io/sanwal-ali-portfolio/Sanwal-chandio-Graphic-Designer.webp">
+
+<!-- Favicon -->
+<link rel="icon" type="image/webp" href="Sanwal-chandio-Graphic-Designer.webp">
+
+<!-- Preconnect Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Google Fonts Async -->
+<link rel="preload" as="style"
+href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap"
+onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</noscript>
+
+<!-- Font Awesome Async -->
+<link rel="preload"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+as="style"
+onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</noscript>
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
   <nav class="navbar">
     <div class="logo">Sanwal Ali</div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#problems" class="nav-link">Problems</a></li>
-      <li><a href="#services" class="nav-link">Services</a></li>
-      <li><a href="#process" class="nav-link">Process</a></li>
-      <li><a href="#why-me" class="nav-link">Why me</a></li>
-      <li><a href="#gallery" class="nav-link">Gallery</a></li>
-      <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-      <li><a href="#cta" class="nav-link">CTA</a></li>
-      <li><a href="#" class="nav-link">Download My Resume</a></li>
+      <li><a href="#home" class="nav-link active" title="Home">Home</a></li>
+      <li><a href="#problems" class="nav-link" title="Problems">Problems</a></li>
+      <li><a href="#services" class="nav-link" title="Services">Services</a></li>
+      <li><a href="#process" class="nav-link" title="Process">Process</a></li>
+      <li><a href="#why-me" class="nav-link" title="Why me">Why me</a></li>
+      <li><a href="#gallery" class="nav-link" title="Gallery">Gallery</a></li>
+      <li><a href="#testimonials" class="nav-link" title="Testimonials">Testimonials</a></li>
+      <li><a href="#cta" class="nav-link" title="CTA">CTA</a></li>
+      <li><a href="#" class="nav-link" title="Download My Resume">Download My Resume</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
   </nav>
@@ -38,7 +85,8 @@
         <h1>Graphic Designer</h1>
         <div class="hero-sub"><span>I'm</span><span id="typing"></span><span class="cursor">|</span></div>
         <p style="color:white; max-width:500px;">Sanwal Ali — 8+ years shaping brands through identity, print, and digital. Let's make your vision unmistakable.</p>
-        <div class="btn-group"><a href="#cta" class="btn btn-primary">Work with me</a><a href="#gallery" class="btn">See work</a></div>
+        <div class="btn-group"><a href="#cta" title="cta" class="btn btn-primary">Work with me</a>
+          <a href="#gallery" title="gallery" class="btn">See work</a></div>
       </div>
       <div class="hero-image"><div class="floating-shape"></div></div>
     </div>
@@ -59,12 +107,12 @@
 <script>
 
 const logos = [
- "images/logo-1.webp",
- "images/logo-2.webp",
- "images/logo-3.webp",
- "images/logo-4.webp",
- "images/logo-5.webp",
- "images/logo-6.webp",
+ {src:"images/logo-1.webp", name:"Partner Logo 1"},
+ {src:"images/logo-2.webp", name:"Partner Logo 2"},
+ {src:"images/logo-3.webp", name:"Partner Logo 3"},
+ {src:"images/logo-4.webp", name:"Partner Logo 4"},
+ {src:"images/logo-5.webp", name:"Partner Logo 5"},
+ {src:"images/logo-6.webp", name:"Partner Logo 6"},
 ];
 
 const track = document.getElementById("logoTrack");
@@ -72,8 +120,10 @@ const track = document.getElementById("logoTrack");
 logos.concat(logos).forEach(logo => {
 
   const img = document.createElement("img");
-  img.src = logo;
-  img.alt = "logo";
+  img.src = logo.src;
+  img.alt = logo.name;
+  img.title = logo.name;
+  img.loading = "lazy";
 
   track.appendChild(img);
 
@@ -390,7 +440,7 @@ logos.concat(logos).forEach(logo => {
     <button class="lightbox-close" id="lightboxClose">&times;</button>
     <button class="lightbox-prev" id="lightboxPrev">&#10094;</button>
     <div class="lightbox-content">
-      <img class="lightbox-image" id="lightboxImage" src="" alt="gallery preview">
+      <img class="lightbox-image" id="lightboxImage" src="" alt="gallery preview" title="gallery preview" loading="lazy">
       <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
     <button class="lightbox-next" id="lightboxNext">&#10095;</button>
@@ -398,7 +448,7 @@ logos.concat(logos).forEach(logo => {
 
   <section id="testimonials"><div class="container reveal"><h2>Kind words</h2><div class="slider-container"><div class="testimonial-slide active-slide">“Sanwal transformed our visual identity with a bold, fresh direction. The teal and cbff54 palette became our signature. He listened deeply and delivered beyond expectations.” <div class="client-name">— Mira Chen, Founder of Lumen</div></div><div class="testimonial-slide">“The book cover he designed exceeded expectations – it won an award and boosted pre‑orders by 40%. He captured the essence of the story perfectly.” <div class="client-name">— David K., Editor</div></div><div class="testimonial-slide">“His UI/UX work on our app increased user retention by 25%. Professional, creative and fast. He made complex flows feel effortless.” <div class="client-name">— Samira L., Product Manager</div></div><div class="slider-dots"><span class="dot active-dot"></span><span class="dot"></span><span class="dot"></span></div></div></div></section>
 
-  <section id="cta"><div class="container reveal"><div class="cta-card"><h2>Let's build something iconic</h2><p>Whether it's a complete brand identity, a book cover that sells, or a seamless UI/UX overhaul – I'm ready to bring your vision to life.</p><a href="#contact" class="btn btn-primary" style="display:inline-block;">Start your project</a></div></div></section>
+  <section id="cta"><div class="container reveal"><div class="cta-card"><h2>Let's build something iconic</h2><p>Whether it's a complete brand identity, a book cover that sells, or a seamless UI/UX overhaul – I'm ready to bring your vision to life.</p><a href="#contact" title="contact" class="btn btn-primary" style="display:inline-block;">Start your project</a></div></div></section>
 
   <section id="faq"><div class="container reveal"><h2>Frequently asked</h2><div class="faq-item"><div class="faq-question">What is your typical timeline? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Most projects take 2‑4 weeks from brief to final files, depending on complexity. Branding projects average 3 weeks, while book covers can be delivered in 10 days. I'll provide a clear schedule upfront.</div></div><div class="faq-item"><div class="faq-question">Do you offer revisions? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, I include up to three revision rounds to ensure you're 100% satisfied. Additional revisions can be arranged at a nominal fee. My goal is to get it right, not just done.</div></div><div class="faq-item"><div class="faq-question">What formats will I receive? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">You'll get print‑ready files (PDF, AI, EPS) and digital formats (PNG, SVG, Figma). I also provide a style guide and organise all assets in a shared folder for easy access.</div></div></div></section>
 
