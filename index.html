@@ -88,7 +88,10 @@ onload="this.onload=null;this.rel='stylesheet'">
         <div class="btn-group"><a href="#cta" title="cta" class="btn btn-primary">Work with me</a>
           <a href="#gallery" title="gallery" class="btn">See work</a></div>
       </div>
-      <div class="hero-image"><div class="floating-shape"></div></div>
+      <div class="hero-image">
+        <img src="Sanwal-chandio-Graphic-Designer.webp" alt="Sanwal-chandio-Graphic-Designer" title="Sanwal-chandio-Graphic-Designer" loading="lazy">
+        <!-- <div class="floating-shape"></div> -->
+      </div>
     </div>
   </section>
 
@@ -612,6 +615,12 @@ logos.concat(logos).forEach(logo => {
       });
 
     })();
+
+ for(let el of elements){
+    el.style.width = "100px"; // just set the width
+}
+// If you need layout info, read it **once after the loop**
+let width = elements[0].offsetWidth; // only one reflow
   </script>
 </body>
 </html>
